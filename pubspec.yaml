@@ -11,4 +11,5 @@ dev_dependencies:
   test: ^1.16.0
 dependencies: 
   logger: ^1.1.0
+  stack_trace: ^1.10.0
 
