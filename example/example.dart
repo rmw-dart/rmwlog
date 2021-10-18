@@ -1,9 +1,11 @@
-import 'package:rmwlog/config.dart' show logConfig;
 import 'dart:io';
 import 'package:rmwlog/init.dart';
 
+// import if you need custom output function
+import 'package:rmwlog/config.dart' show logConfig;
+
 void main() {
-  // 可以使用自定义的输出函数
+  // can use custom output function
   logConfig[1] = (stack, prefix, msg) {
     stderr.write((stack ?? '') + " :\n" + prefix + msg + '\n');
   };
