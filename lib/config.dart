@@ -15,7 +15,7 @@ void Function(String, String) out(String prefix, Stdout out, Styles style) {
   return (stack, msg) {
     late final String tip;
     if (stack == _pre) {
-      tip = '\t';
+      tip = ' ';
     } else {
       _pre = stack;
       tip = color(stack + prefix);
@@ -25,7 +25,7 @@ void Function(String, String) out(String prefix, Stdout out, Styles style) {
 }
 
 final logConfig = [
-  out(' : ', stdout, Styles.DARK_GRAY),
-  out(' 🔥 ', stderr, Styles.LIGHT_YELLOW),
-  out(' ❌ ', stderr, Styles.LIGHT_RED),
+  out(' → ', stdout, Styles.DARK_GRAY),
+  out(' ⚠️ ', stderr, Styles.LIGHT_YELLOW),
+  out(' × ', stderr, Styles.LIGHT_RED),
 ];
