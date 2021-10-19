@@ -21,7 +21,9 @@ void main() async {
 
   log('version', 1.0);
   logw('warning');
-  loge('xxx', Exception(1234));
+  for (var i = 0; i < 3; ++i) {
+    loge('something happended', Exception(i));
+  }
   await Future.delayed(Duration(seconds: 1));
   log(123);
 }

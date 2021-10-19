@@ -1,20 +1,26 @@
 import 'dart:io';
 import 'package:colorize/colorize.dart';
 
-final color = Colorize();
+final buildEscSeq = Colorize().buildEscSeq;
 
-String apply(Styles style, String text) {
-  return color.buildEscSeq(style) + text + color.buildEscSeq(Styles.RESET);
-}
+var _pre = '';
 
 void Function(String, String) out(String prefix, Stdout out, Styles style) {
+  late final String Function(String) color;
   if (stdout.supportsAnsiEscapes) {
-    return (stack, msg) {
-      out.write(apply(style, stack) + prefix + msg + '\n');
-    };
+    color = (text) => buildEscSeq(style) + text + buildEscSeq(Styles.RESET);
+  } else {
+    color = (text) => text;
   }
   return (stack, msg) {
-    out.write(stack + " : " + prefix + msg + '\n');
+    late final String tip;
+    if (stack == _pre) {
+      tip = '\t';
+    } else {
+      _pre = stack;
+      tip = color(stack + prefix);
+    }
+    out.write(tip + msg + '\n');
   };
 }
 
