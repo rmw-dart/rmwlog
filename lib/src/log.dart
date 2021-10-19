@@ -35,18 +35,18 @@ String toString(i) {
 final depth = Platform.script.toString().endsWith('.dart') ? 2 : 3;
 final depth_1 = depth + 1;
 
-VarArgsFunction _logger(void Function(String?, String) write) {
+VarArgsFunction _logger(void Function(String, String) write) {
   return VarArgsFunction((args, kwds) {
     final List<String> li = [];
-    late final String? stack;
+    late final Frame f;
 
     final frames = Trace.current().frames;
     if (frames.length > depth_1) {
-      final f = frames[depth];
-      stack = "${f.location} ${f.member}";
+      f = frames[depth];
     } else {
-      stack = null;
+      f = frames.last;
     }
+    final stack = "${f.location} ${f.member}";
 
     for (var i in args) {
       li.add(toString(i));

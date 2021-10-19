@@ -1,8 +1,8 @@
 import 'dart:io';
 
-void Function(String?, String) out(String prefix, Stdout out) {
+void Function(String, String) out(String prefix, Stdout out) {
   return (stack, msg) {
-    out.write((stack ?? '') + " : " + prefix + msg + '\n');
+    out.write(stack + " : " + prefix + msg + '\n');
   };
 }
 
