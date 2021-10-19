@@ -1,6 +1,6 @@
 # rmwlog
 
-simple log and can custom log output function
+simple log , can custom log output function
 
 ## use
 

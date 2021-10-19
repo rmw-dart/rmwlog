@@ -33,25 +33,29 @@ String toString(i) {
   return i.toString();
 }
 
-VarArgsFunction _logger(
-    String prefix, void Function(String?, String, String) write) {
+VarArgsFunction _logger(void Function(String?, String) write) {
   return VarArgsFunction((args, kwds) {
     final List<String> li = [];
     late final String? stack;
-    if (Trace.current().frames.length > 3) {
-      stack = Trace.current().frames[2].toString();
+
+    final frames = Trace.current().frames;
+    if (frames.length > 3) {
+      final f = frames[2];
+      stack = "${f.location} ${f.member}";
     }
 
     for (var i in args) {
       li.add(toString(i));
     }
+
     for (var i in kwds.entries) {
       li.add("${i.key} : ${toString(i.value)}");
     }
-    write(stack, prefix, li.join(' '));
+
+    write(stack, li.join(' '));
   });
 }
 
-dynamic log = _logger('', logConfig[0]);
-dynamic logw = _logger('🔥 ', logConfig[1]);
-dynamic loge = _logger('❌ ', logConfig[1]);
+dynamic log = _logger(logConfig[0]);
+dynamic logw = _logger(logConfig[1]);
+dynamic loge = _logger(logConfig[2]);
