@@ -1,7 +1,7 @@
 library rmwlog;
 
 import 'package:stack_trace/stack_trace.dart';
-import 'config.dart';
+import '../config.dart';
 
 typedef VarArgsCallback = void Function(
     List<dynamic> args, Map<String, dynamic> kwargs);
