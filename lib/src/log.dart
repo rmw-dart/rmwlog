@@ -1,5 +1,6 @@
 import 'package:stack_trace/stack_trace.dart';
 import '../config.dart';
+import 'dart:io';
 
 typedef VarArgsCallback = void Function(
     List<dynamic> args, Map<String, dynamic> kwargs);
@@ -31,14 +32,17 @@ String toString(i) {
   return i.toString();
 }
 
+final depth = Platform.script.toString().endsWith('.dart') ? 2 : 3;
+final depth_1 = depth + 1;
+
 VarArgsFunction _logger(void Function(String?, String) write) {
   return VarArgsFunction((args, kwds) {
     final List<String> li = [];
     late final String? stack;
 
     final frames = Trace.current().frames;
-    if (frames.length > 3) {
-      final f = frames[2];
+    if (frames.length > depth_1) {
+      final f = frames[depth];
       stack = "${f.location} ${f.member}";
     }
 
