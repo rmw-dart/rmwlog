@@ -1,6 +1,6 @@
 name: rmwlog
 description: simple log , can custom log output function
-version: 1.0.9
+version: 1.0.10
 homepage: https://github.com/rmw-dart/rmwlog
 
 environment:
