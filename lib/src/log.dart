@@ -44,6 +44,8 @@ VarArgsFunction _logger(void Function(String?, String) write) {
     if (frames.length > depth_1) {
       final f = frames[depth];
       stack = "${f.location} ${f.member}";
+    } else {
+      stack = null;
     }
 
     for (var i in args) {
