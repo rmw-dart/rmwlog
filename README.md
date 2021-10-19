@@ -2,19 +2,25 @@
 
 # rmwlog
 
-http get or post with timeout ( default 60 seconds )
+simple log , can custom log output function
 
 ## use
 
 ```dart
+import 'dart:io';
 import 'package:rmwlog/init.dart';
 
-void main() async {
-  final r = await rmwlog.get('https://www.qq.com/robots.txt');
+// import if you need custom output function
+import 'package:rmwlog/config.dart' show logConfig;
 
-  print(r.statusCode);
-  print(await r.text());
-  print('done');
+void main() {
+  // can use custom output function
+  logConfig[1] = (stack, msg) {
+    stderr.write((stack ?? '') + " :\n💀" + msg + '\n');
+  };
+  log('version', 1.0);
+  logw('warning');
+  loge('xxx', Exception(1234));
 }
 
 ```
