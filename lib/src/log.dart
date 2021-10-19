@@ -1,5 +1,3 @@
-library rmwlog;
-
 import 'package:stack_trace/stack_trace.dart';
 import '../config.dart';
 
